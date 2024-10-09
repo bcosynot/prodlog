@@ -1,14 +1,20 @@
-+++
-title = 'Make Your Least Used Key (Caps Lock) 10x More Useful'
-date = 2024-10-08T08:32:16-04:00
-categories = [ "Productivity", "Guides"]
-tags = ["Productivity", "MacOS", "hammerspoon", "hotkeys", "shortcuts", "Utilities"]
-slug = "better-caps-lock"
-summary = "Caps lock is probably one of my least used keys. Finally found a use for it. My external keyboard has a hyper key (Alt+Shift+Ctrl+Cmd) that I use for global shortcuts like launching or switching to my regularly used apps (like a fancier command tab) and running some automations. Got the same thing going on the laptop by remapping caps lock to hyper (and a more reachable esc on short tap)."
-+++
+---
+title: 'Make Your Least Used Key (Caps Lock) 10x More Useful'
+date: 2024-10-08T08:32:16-04:00
+categories: [ "Productivity", "Guides"]
+tags: ["Productivity", "MacOS", "hammerspoon", "hotkeys", "shortcuts", "Utilities"]
+slug: "better-caps-lock"
+summary: 
+   Caps lock is probably one of my least used keys and I finally found a use for it.<br /><br />
+   
+   My external keyboard has a hyper key (Alt+Shift+Ctrl+Cmd) that I use for global shortcuts like launching or 
+   switching between my regularly used apps (like a faster command tab) and running some automations.<br /><br />
+   
+   Got the same thing going on the Macbook Pro by remapping caps lock to hyper (and a more reachable esc on short tap).
+---
 
 My external keyboard has a hyper key (<kbd>alt</kbd><kbd>shift</kbd><kbd>ctrl</kbd><kbd>cmd</kbd>) that I use for 
-global shortcuts like launching or switching to my regularly used apps (like a fancier command tab) and running some 
+global shortcuts like launching or switching between my regularly used apps (like a faster command tab) and running some 
 automations.
 
 I have now configured my <kbd>caps lock</kbd> to behave as the hyper key while pressed or <kbd>esc</kbd> when tapped.
