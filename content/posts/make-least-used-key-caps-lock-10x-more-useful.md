@@ -1,15 +1,23 @@
 +++
 title = 'Make Your Least Used Key (Caps Lock) 10x More Useful'
 date = 2024-10-08T08:32:16-04:00
+categories = [ "Productivity", "Guides"]
+tags = ["Productivity", "MacOS", "hammerspoon", "hotkeys", "shortcuts", "Utilities"]
+slug = "better-caps-lock"
+summary = "Caps lock is probably one of my least used keys. Finally found a use for it. My external keyboard has a hyper key (Alt+Shift+Ctrl+Cmd) that I use for global shortcuts like launching or switching to my regularly used apps (like a fancier command tab) and running some automations. Got the same thing going on the laptop by remapping caps lock to hyper (and a more reachable esc on short tap)."
 +++
 
-You can make you <kbd>caps lock</kbd> more useful by remapping it to the <kbd>esc</kbd> or the **hyper** key,
-a combination of <kbd>alt</kbd><kbd>shift</kbd><kbd>ctrl</kbd><kbd>cmd</kbd>, that can be used for global shortcuts
-because no other application is likely to shortcuts that use *all* the modifier keys.
+My external keyboard has a hyper key (<kbd>alt</kbd><kbd>shift</kbd><kbd>ctrl</kbd><kbd>cmd</kbd>) that I use for 
+global shortcuts like launching or switching to my regularly used apps (like a fancier command tab) and running some 
+automations.
+
+I have now configured my <kbd>caps lock</kbd> to behave as the hyper key while pressed or <kbd>esc</kbd> when tapped.
+
+This post shows you how to configure your laptop to do the same.
 
 ## Why
 
-You probably use Shift for capitalization, while caps-lock just sits there taking up valuable real estate on your computer.
+You probably use Shift for capitalization, while caps-lock just sits there taking up valuable real estate on your keyboard.
 
 ### Hyper
 
@@ -88,9 +96,12 @@ Next, lets setup some shortcuts to switch between regularly used apps. As an exa
 
 ```lua
 hyper:bind({}, 'i', function()
+  -- trigger the hyper key
   hs.eventtap.keyStroke({ "alt", "shift", "ctrl", "cmd" }, 'i')
   hyper.triggered = true
 end)
+-- Use the hyber key combo to configure the actual actions
+-- so the external keyboard can take advantage of it as well
 hs.hotkey.bind({ "alt", "shift", "ctrl", "cmd" }, "i", function()
   hs.application.launchOrFocus("IntelliJ IDEA Ultimate")
 end)
@@ -182,7 +193,11 @@ for key, app in pairs(keyApps) do
 end
 ```
 
-Save this file and then reload your configuration from Hammerspoon's menu bar icon. You should be able to launch or switch apps when you hit your configured keys with `caps-lock`
+Save this file and then reload your configuration from Hammerspoon's menu bar icon. 
+You should be able to launch or switch apps when you hit your configured keys while holding down <kbd>caps lock</kbd>.
+Just tapping <kbd>caps lock</kbd> will trigger <kbd>esc</kbd>.
+
+I haven't covered the use case of automating tasks here -- I plan to do that in a future post.
 
 [^1]: After waking the computer from sleep, my keyboard is completely unresponsive until I restart Karabiner-Elements -- regardless of how I setup my computer.
 [^2]: Mentioned earlier in the post the **hyper** key is a combination of "alt", "shift", "ctrl", "cmd". This can be used for global shortcuts because no other application is likely to shortcuts that use *all* the modifier keys.
