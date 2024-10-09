@@ -4,17 +4,17 @@ date: 2024-10-08T08:32:16-04:00
 categories: [ "Productivity", "Guides"]
 tags: ["Productivity", "MacOS", "hammerspoon", "hotkeys", "shortcuts", "Utilities"]
 slug: "better-caps-lock"
-summary: 
+summary:
    Caps lock is probably one of my least used keys and I finally found a use for it.<br /><br />
-   
-   My external keyboard has a hyper key (Alt+Shift+Ctrl+Cmd) that I use for global shortcuts like launching or 
+
+   My external keyboard has a hyper key (Alt+Shift+Ctrl+Cmd) that I use for global shortcuts like launching or
    switching between my regularly used apps (like a faster command tab) and running some automations.<br /><br />
-   
+
    Got the same thing going on the Macbook Pro by remapping caps lock to hyper (and a more reachable esc on short tap).
 ---
 
-My external keyboard has a hyper key (<kbd>alt</kbd><kbd>shift</kbd><kbd>ctrl</kbd><kbd>cmd</kbd>) that I use for 
-global shortcuts like launching or switching between my regularly used apps (like a faster command tab) and running some 
+My external keyboard has a hyper key (<kbd>alt</kbd><kbd>shift</kbd><kbd>ctrl</kbd><kbd>cmd</kbd>) that I use for
+global shortcuts like launching or switching between my regularly used apps (like a faster command tab) and running some
 automations.
 
 I have now configured my <kbd>caps lock</kbd> to behave as the hyper key while pressed or <kbd>esc</kbd> when tapped.
@@ -48,12 +48,12 @@ For instance I have the following shortcuts setup:
 ### Remapping
 A common way to accomplish this is via Karabiner-Elements, but I have found that to be buggy [^1], or it might not be on your organization's allowed list of apps. Additionally, I would prefer to not have another app using my compute resources for such a minor utility.
 
-Instead, a better and easier method is to use [hidutil](https://developer.apple.com/library/archive/technotes/tn2450/_index.html) -- a key remapping tool built into MacOS. 
-I created a short script to generate the configuration file (or adding the appropriate mapping if file already exists). 
+Instead, a better and easier method is to use [hidutil](https://developer.apple.com/library/archive/technotes/tn2450/_index.html) -- a key remapping tool built into MacOS.
+I created a short script to generate the configuration file (or adding the appropriate mapping if file already exists).
 You can run it by executing the following command (you will need [NodeJS](https://nodejs.org/) installed).
 
-```shell  
-curl -fSSL https://github.com/bcosynot/hyperutil/raw/refs/heads/main/capsLockOnHyperdrive.js | node  
+```shell
+curl -fSSL https://github.com/bcosynot/hyperutil/raw/refs/heads/main/capsLockOnHyperdrive.js | node
 ```
 
 After running this, restart your computer.
@@ -199,7 +199,7 @@ for key, app in pairs(keyApps) do
 end
 ```
 
-Save this file and then reload your configuration from Hammerspoon's menu bar icon. 
+Save this file and then reload your configuration from Hammerspoon's menu bar icon.
 You should be able to launch or switch apps when you hit your configured keys while holding down <kbd>caps lock</kbd>.
 Just tapping <kbd>caps lock</kbd> will trigger <kbd>esc</kbd>.
 
