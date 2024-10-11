@@ -18,20 +18,17 @@
             inherit system;
           };
         in
-         {
+        {
 
           packages.hugo-blog = pkgs.stdenv.mkDerivation rec {
             name = "hugo-blog";
             src = self;
-            buildInputs = [ pkgs.git pkgs.nodePackages.prettier ];
             configurePhase = ''
               mkdir -p "themes/terminal"
               cp -r ${hugo-terminal}/* "themes/terminal"
-              sed -i -e 's/enableGitInfo = true/enableGitInfo = false/' hugo.toml
             '';
             buildPhase = ''
-              ${pkgs.hugo}/bin/hugo
-              ${pkgs.nodePackages.prettier}/bin/prettier -w public '!**/*.{js,css}'
+              ${pkgs.hugo}/bin/hugo --minify
             '';
             installPhase = "cp -r public $out";
           };
@@ -45,11 +42,11 @@
 
           devShell =
             pkgs.mkShell {
-                buildInputs = [ pkgs.nixpkgs-fmt pkgs.hugo ];
-                shellHook = ''
-                            mkdir -p themes
-                            ln -sn "${hugo-terminal}" "themes/terminal"
-                          '';
+              buildInputs = [ pkgs.nixpkgs-fmt pkgs.hugo ];
+              shellHook = ''
+                mkdir -p themes
+                ln -sn "${hugo-terminal}" "themes/terminal"
+              '';
             };
         });
 }
