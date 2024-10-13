@@ -1,4 +1,4 @@
-baseURL = 'https://prodlog.makerflow.co/'
+baseURL = 'https://prodlog.xyz/'
 languageCode = 'en-us'
 title = 'Prodlog'
 # Add it only if you keep the theme in the `themes` directory.
