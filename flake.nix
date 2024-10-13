@@ -42,6 +42,11 @@
                 ${pkgs.hugo}/bin/hugo server -D
               '';
             };
+            newpost = utils.lib.mkApp {
+              drv = pkgs.writeShellScriptBin "new-post" ''
+                ${pkgs.hugo}/bin/hugo new content posts/"$1".md
+              '';
+            };
             default = serve;
           };
 

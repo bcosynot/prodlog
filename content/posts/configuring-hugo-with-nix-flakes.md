@@ -133,16 +133,23 @@ packages, meant to be easily runnable.
                 ${pkgs.hugo}/bin/hugo server -D
               '';
             };
+            newpost = utils.lib.mkApp {
+              drv = pkgs.writeShellScriptBin "new-post" ''
+                ${pkgs.hugo}/bin/hugo new content posts/"$1".md
+              '';
+            };
             default = serve;
           };
 
 ```
 
-Here, we define two apps `build` and `serve` and set the latter as the default app. With this definition
+Here, we define a few apps `build`, `newpost`, and `serve` and set the last as the default app. With this definition
 
 * `nix run` and `nix run .#serve` will run the `hugo server -D` command, letting me preview the blog post quickly.
-* While `nix run .#build` will run the `hugo` build process to generate static HTML pages, if I wanted to take a look at
+* `nix run .#build` will run the `hugo` build process to generate static HTML pages, if I wanted to take a look at
 the final version of built pages.
+* `nix run .#newpost -- post-title` will create a new post for me by delegating `post-title` to the `hugo new content`
+command
 
 
 ##### Development environment
