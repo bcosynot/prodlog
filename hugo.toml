@@ -4,7 +4,6 @@ title = 'Prodlog'
 # Add it only if you keep the theme in the `themes` directory.
 # Remove it if you use the theme as a remote Hugo Module.
 theme = "terminal"
-paginate = 5
 
 [markup.goldmark.renderer]
     unsafe = true
