@@ -33,16 +33,21 @@
             installPhase = "cp -r public $out";
           };
 
-          defaultPackage = self.packages.${system}.hugo-blog;
+          packages.default = self.packages.${system}.hugo-blog;
 
           apps = rec {
-            hugo = utils.lib.mkApp { drv = pkgs.hugo; };
-            default = hugo;
+            build = utils.lib.mkApp { drv = pkgs.hugo; };
+            serve = utils.lib.mkApp {
+              drv = pkgs.writeShellScriptBin "hugo-serve" ''
+                ${pkgs.hugo}/bin/hugo server -D
+              '';
+            };
+            default = serve;
           };
 
-          devShell =
+          devShells.default =
             pkgs.mkShell {
-              buildInputs = [ pkgs.nixpkgs-fmt pkgs.hugo ];
+              buildInputs = [ pkgs.hugo ];
               shellHook = ''
                 mkdir -p themes
                 ln -sn "${hugo-terminal}" "themes/terminal"
