@@ -373,3 +373,8 @@ hr {
   background: var(--accent);
   height: 2px;
 }
+
+img.post-cover {
+    border: none;
+    margin: 0;
+}
