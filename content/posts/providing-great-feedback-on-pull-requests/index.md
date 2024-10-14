@@ -95,9 +95,6 @@ been some discussion about the work, the approach being taken, and you were expe
 If this is the first time you are hearing about it, make sure to ask for all relevant context and details so you can
 provide your feedback with the full picture. Not just the what, but also the why.
 
-{{< tweet user="bcosynot" id="1558084239106637825" >}}
-{{< tweet user="EddieHinkle" id="1558084684030124033" >}}
-
 Equally important is to understand the constraints folks are working under -  time is usually the biggest one to watch
 out for, but infrastructure, language/framework/stack capabilities, and product/business decisions are some other
 constraints to keep in mind.
@@ -117,8 +114,6 @@ Some things to appreciate -
 4. something new to you that you learned - - “I had no idea, this is neat!”
 5. code deletion - “Less code to maintain, win!”
 6. or just appreciate them for putting in the hard work! - “Thanks for putting in the hard work, this was very needed”
-
-{{< tweet user="curiouslychase" id="1405163424036786186" >}}
 
 Personally, this is one area I can do a lot better in, so let me know if you have ideas around this!
 
