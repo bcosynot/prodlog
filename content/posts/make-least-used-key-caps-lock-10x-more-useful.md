@@ -25,6 +25,10 @@ This post shows you how to configure your laptop to do the same.
 
 You probably use Shift for capitalization, while caps-lock just sits there taking up valuable real estate on your keyboard.
 
+### Esc
+
+<kbd>caps lock</kbd> is easier to reach then <kbd>esc</kbd> on the Macbook Pro keyboard!
+
 ### Hyper
 
 For instance I have the following shortcuts setup:
@@ -39,36 +43,42 @@ For instance I have the following shortcuts setup:
     1. <kbd>caps lock</kbd><kbd>1</kbd> ... <kbd>4</kbd> -> update Slack status
     2. <kbd>caps lock</kbd><kbd>5</kbd> -> put computer to sleep
 
-### Esc
-
-<kbd>caps lock</kbd> is easier to reach then <kbd>esc</kbd> on the Macbook Pro keyboard!
-
 ## How
 
-### Remapping
-A common way to accomplish this is via Karabiner-Elements, but I have found that to be buggy [^1], or it might not be on your organization's allowed list of apps. Additionally, I would prefer to not have another app using my compute resources for such a minor utility.
+### Hammerspoon
 
-Instead, a better and easier method is to use [hidutil](https://developer.apple.com/library/archive/technotes/tn2450/_index.html) -- a key remapping tool built into MacOS.
-I created a short script to generate the configuration file (or adding the appropriate mapping if file already exists).
-You can run it by executing the following command (you will need [NodeJS](https://nodejs.org/) installed).
-
-```shell
-curl -fSSL https://github.com/bcosynot/hyperutil/raw/refs/heads/main/capsLockOnHyperdrive.js | node
-```
-
-After running this, restart your computer.
-
-For more information about this script, take a look at the [hyperutil repo on GitHub](https://github.com/bcosynot/hyperutil).
-
-### Configuring shortcuts with Hammerspoon
+Hammerspoon is a powerful automation utility for macOS with configuration written in Lua. You don't need to know Lua to understand the instructions in this post.
 
 #### Install Hammerspoon
 
 First, install Hammerspoon if you don't already have it. You can follow the "Setup" instructions outlined in their [Getting Started](https://www.hammerspoon.org/go/) guide.
 
+Once installed, open the configuration file by clicking on the Hammerspoon icon in your menubar and selecting the "Open config" option. The config file is located at `~/.hammerspoon/init.lua` by default if you want to open it in another editor.
+
+### Remapping
+
+A common way to accomplish this is via Karabiner-Elements, but I have found that to be buggy [^1], or it might not be on your organization's allowed list of apps. Additionally, I would prefer to not have another app using my compute resources for such a minor utility.
+
+Instead, a better and easier method is to use [hidutil](https://developer.apple.com/library/archive/technotes/tn2450/_index.html) -- a key remapping tool built into MacOS.
+
+You can call the `hidutil` command right from the Hammerspoon config by adding the following to the _top_ of your file
+
+```lua
+-- Remap Caps Lock to escape using hidutil
+local remap_output, remap_status = hs.execute [["/usr/bin/hidutil" "property" "--set" "{\"UserKeyMapping\":[{\"HIDKeyboardModifierMappingSrc\":0x700000039,\"HIDKeyboardModifierMappingDst\":0x70000006D}]}"]]
+```
+
+Save your configuration file and reload it in Hammerspoon by clicking on the Hammerspoon icon in your menubar and selecting the "Reload Config" option.
+
+If you tap <kbd>caps lock</kbd> now, the LED indicator should no longer light up.
+
+### Configuring shortcuts with Hammerspoon
+
+Now let's configure Hammerspoon to trigger <kbd>caps lock</kbd> as <kbd>esc</kbd> or `hyper`.
+
 #### Configure hyper mode
 
-Once installed, open the configuration file in your favorite text editor and add the following code
+First, let's setup the "hyper" mode.
 
 ```lua
 -- A global variable for the Hyper Mode
@@ -151,6 +161,9 @@ The `keyApps` table contains mappings for keys to their respective apps. We then
 
 At the end your Hammerspoon file should look like this
 ```lua
+-- Remap Caps Lock to escape using hidutil
+local remap_output, remap_status = hs.execute [["/usr/bin/hidutil" "property" "--set" "{\"UserKeyMapping\":[{\"HIDKeyboardModifierMappingSrc\":0x700000039,\"HIDKeyboardModifierMappingDst\":0x70000006D}]}"]]
+
 -- A global variable for the Hyper Mode
 hyper = hs.hotkey.modal.new({}, nil)
 
